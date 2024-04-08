@@ -16,7 +16,7 @@ public class StdIO {
         // 자바에서 키보드 입력받기
         Scanner scan = new Scanner(System.in); //  입력준비 딱 1회만 함
 
-        // 문자 입력받기
+         //문자 입력받기
         System.out.printf("이름: ");
         String userName = scan.nextLine();
         System.out.println("userName = " + userName);
@@ -25,5 +25,8 @@ public class StdIO {
         System.out.print("출생년도: ");
         int birthYear = Integer.parseInt(scan.nextLine());
         System.out.println("birthYear = " + birthYear);
+
+
+        
     }
 }
