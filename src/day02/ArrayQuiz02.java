@@ -1,34 +1,48 @@
 package day02;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ArrayQuiz02 {
+
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("* 우리반 학생들의 별명: ");
-        System.out.println("- 삭제할 학생의 별명을 입력하세요!");
+        Scanner sc = new Scanner(System.in);
 
-        String[] arrList = {"영웅재중", "최강창민", "시아준수", "믹키유천", "유노윤호"};
+        String[] students = {"영웅재중", "최강창민", "시아준수", "믹키유천", "유노윤호"};
+        System.out.println("* 우리반 학생들의 별명: " + Arrays.toString(students));
 
-        while(true) {
-            System.out.println("> ");
-            String newNickname = scan.nextLine();
-//            String target = newNickname;
+        // 탐색 알고리즘
+        System.out.println("- 삭제할 학생의 별명을 입력하세요");
+        System.out.print("> ");
+        String target = sc.nextLine();
 
+        int index = -1;
+        for (int i = 0; i < students.length; i++) {
+            if (target.equals(students[i]))  {
+                index = i;
+                break;
+            }
+        }
 
-            for (int i = newNickname; i < arrList.length ; i++) {
-                arrList[i] = arrList[i + 1];
-
+        if (index != -1) {
+            // 삭제 알고리즘
+            for (int i = index; i < students.length - 1; i++) {
+                students[i] = students[i + 1];
             }
 
-            String[] temp = new String[arrList.length - 1];
+            String[] temp = new String[students.length - 1];
 
-            for (int i = 0; i < temp.length; i++) {
-                temp[i] = numbers[i];
-
+            for (int i = 0; i < students.length - 1; i++) {
+                temp[i] = students[i];
             }
-            numbers = temp;
+
+            students = temp;
             temp = null;
+
+            System.out.println("* 삭제 후 정보: " + Arrays.toString(students));
+        } else {
+            System.out.printf("해당 별명 (%s)은(는) 존재하지 않습니다.\n", target);
+        }
 
 
     }
