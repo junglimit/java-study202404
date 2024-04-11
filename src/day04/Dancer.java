@@ -57,10 +57,10 @@ public class Dancer {
         genre = "케이팝";
         danceLevel = 2;
     }
-    Dancer(String dName, String cName, String gname){
+    Dancer(String dName, String cName, String gName){
         dancerName = dName;
         crewName = cName;
-        genre = gname;
+        genre = gName;
         danceLevel = 2;
     }
 }
