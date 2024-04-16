@@ -15,8 +15,8 @@ public class MemberView {
     }
 
     void showMembers() {
-        System.out.printf("========= 현재 회원 목록 (총 %d명) ==========\n", MemberRepository.members.length);
-        for (Member m : MemberRepository.members) {
+        System.out.printf("========= 현재 회원 목록 (총 %d명) ==========\n", mr.members.size());
+        for (Member m : mr.members.getMembers()) {
             System.out.println(m);
         }
     }
@@ -98,7 +98,7 @@ public class MemberView {
         // 이메일이 일치하는 회원이 있는지 조회
         Member foundMember = mr.findMemberByEmail(inputEmail);
 
-        if (foundMember != null){
+        if (foundMember != null) {
 
             // 기존 비밀번호를 입력해주세요
 
@@ -107,10 +107,11 @@ public class MemberView {
             String newPassword = si.input("# 새 비밀번호: ");
 
             // 회원정보 실제로 수정
-//            foundMember.password = newPassword; 아래로 리팩토링
+//            foundMember.password = newPassword;
             foundMember.changePassword(newPassword);
+
             System.out.println("# 비밀번호 변경이 완료되었습니다.");
-        }else{
+        } else {
             System.out.println("\n# 해당 회원은 존재하지 않습니다.");
         }
     }
@@ -121,18 +122,19 @@ public class MemberView {
         // 이메일이 일치하는 회원이 있는지 조회
         Member foundMember = mr.findMemberByEmail(inputEmail);
 
-        if(foundMember != null){
+        if (foundMember != null) {
             // 삭제 진행
             // 패스워드 검사
             String inputPw = si.input("# 비밀번호를 입력: ");
-            if(inputPw.equals(foundMember.password)){
+            if (inputPw.equals(foundMember.password)) {
                 mr.removeMember(inputEmail);
                 System.out.printf("# %s님의 회원정보가 삭제되었습니다.\n", foundMember.memberName);
-            }else {
-                System.out.println("#\n 비밀번호가 일치하지 않습니다. 탈퇴를 취소합니다.");
+            } else {
+                System.out.println("\n# 비밀번호가 일치하지 않습니다. 탈퇴를 취소합니다.");
             }
-        }else {
+        } else {
             System.out.println("\n# 해당 회원은 존재하지 않습니다.");
         }
+
     }
 }
