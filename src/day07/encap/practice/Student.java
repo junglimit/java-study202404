@@ -11,6 +11,10 @@ public class Student {
     }
 
     public void setName(String name) {
+        if(name==null || name.isEmpty()){
+            System.out.println("유효하지 않은 이름입니다.");
+            return;
+        }
         this.name = name;
     }
 
@@ -19,6 +23,7 @@ public class Student {
     }
 
     public void setStudentId(String studentId) {
+
         this.studentId = studentId;
     }
 

@@ -31,7 +31,8 @@ public class Product {
     }
 
     public void reduceStock(int reduce) {
-        if(reduce > stock) {
+        if(reduce > stock || reduce < 0) {
+            System.out.println("요청한 수량이 재고보다 많거나 잘못된 수량입니다.");
            return;
         } else {
             stock -= reduce;
