@@ -11,7 +11,11 @@ public class Hunter extends Player {
         this.concentration = 100;
     }
 
-
+    @Override
+    public void showStatus() {
+        super.showStatus();
+        System.out.println("# concentration: " + this.concentration);
+    }
 
     public void multipleArrow() {
 
