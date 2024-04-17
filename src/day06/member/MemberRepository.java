@@ -1,12 +1,19 @@
 package day06.member;
 
+import java.util.Arrays;
+
 // 역할: 회원 배열을 관리하는 역할 - 회원 데이터 저장소
 public class MemberRepository {
 
     // 필드
+    // const members = [{}, {}, {}];
 //    static Member[] members; // 현재 관리되는 회원 배열
 //    static Member[] restoreList; // 삭제된 회원들이 모일 배열
 
+    // const members = {
+    //    mArr: [{}, {}, {}],
+    //    push: function() {}
+    // };
     MemberList members;
     MemberList restoreList;
 
@@ -54,7 +61,7 @@ public class MemberRepository {
      * @since 2024.04.16
      */
     boolean isDuplicateEmail(String targetEmail) {
-        return findMemberByEmail(targetEmail) != null;
+        return members.findIndex(targetEmail) != -1;
     }
 
     /**
@@ -101,6 +108,24 @@ public class MemberRepository {
 //        }
 //        members = temp;
 
-        members.remove(index);
+        // members배열에서 삭제 후 삭제된 member를 리턴받음
+        Member removed = members.remove(index);
+        restoreList.push(removed);
+
+        System.out.println(Arrays.toString(members.mArr));
+        System.out.println(Arrays.toString(restoreList.mArr));
+    }
+
+    public Member findRestoreMemberByEmail(String inputEmail) {
+
+        return restoreList.get(inputEmail);
+    }
+
+    public void restore(String inputEmail) {
+
+        int index = restoreList.findIndex(inputEmail);
+
+        Member removed = restoreList.remove(index);
+        members.push(removed);
     }
 }
