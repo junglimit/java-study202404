@@ -2,16 +2,20 @@ package day07.player;
 
 public class Mage extends Player {
 
-    int rage;
+    int mana;
 
     public Mage(String nickname) {
         this.nickname = nickname;
         this.level = 1;
         this.hp = 50;
-        this.rage = 100;
+        this.mana = 100;
     }
 
-    // 현재 캐릭터 정보를 출력
+    @Override
+    public void showStatus() {
+        super.showStatus();
+        System.out.println("# mana: " + this.mana);
+    }
 
 
     public void thunderbolt(Mage ... targets){
