@@ -26,7 +26,7 @@ public class Dancer {
     }
 
     // 춤추는 기능
-    void dance() {
+    public void dance() {
         System.out.printf("%s 댄서가 %s춤을 춥니다.\n", dancerName, genre);
     }
 
@@ -35,7 +35,7 @@ public class Dancer {
 
     // 1. 생성자는 반드시 이름이 클래스 이름과 같아야 한다. ******
     // 2. 생성자는 리턴값이 없음. -> void 가 생략이 됨 / 종료시키는 return 은 가능
-    Dancer() {
+    public Dancer() {
         dancerName = "춤꾼";
         crewName = "팝핀크루";
         genre = "케이팝";
