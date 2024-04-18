@@ -1,12 +1,19 @@
 package day08.static_;
 
+import util.SimpleInput;
+
+import static day08.static_.Count.*;
+import static java.lang.System.*;
+import static util.SimpleInput.input;
+import static java.lang.Math.random;
+
 public class Main {
     public static void main(String[] args) {
 
         // static 은 객체 생성 없이 접근이 가능함 ( 클래스로 직접 접근 )
-        Count.x = 20;
+        x = 20;
 
-        Count.m1();
+        m1();
 
         Count c1 = new Count();
         Count c2 = new Count();
@@ -16,16 +23,42 @@ public class Main {
         c1.m2();
         c2.m2();
 
-        Count.x = 99; // static 이라서 변수값으로 접근이 의미가 없음(공유) / 그냥 클래스 이름으로 접근
-        Count.x = 50;
+        x = 99; // static 이라서 변수값으로 접근이 의미가 없음(공유) / 그냥 클래스 이름으로 접근
+        x = 50;
 
-        System.out.println("c1.x = " + Count.x);
-        System.out.println("c2.x = " + Count.x);
+        out.println("c1.x = " + x);
+        out.println("c2.x = " + x);
 
-        System.out.println("=================");
+        out.println("=================");
 
-        System.out.println("c1.y = " + c1.y);
-        System.out.println("c2.y = " + c2.y);
+        out.println("c1.y = " + c1.y);
+        out.println("c2.y = " + c2.y);
+
+        Calculator redCal = new Calculator();
+        Calculator blueCal = new Calculator();
+
+        Calculator.calcArea(5);
+
+        redCal.paint("빨강");
+        blueCal.paint("파랑");
+
+//        String name = input("이름: ");
+
+        double random = random();
+
+        out.println();
+
+        m1();
+
+        out.println("==================");
+
+        out.println("국가: " + Person.nation);
+
+        Person gap = new Person("갑돌이", 20);
+        out.println(gap.name);
+        out.println(gap.age);
+        out.println(gap.nation);
 
     }
+
 }
