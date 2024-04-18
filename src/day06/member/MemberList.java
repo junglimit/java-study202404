@@ -4,6 +4,7 @@ public class MemberList {
 
     Member[] mArr;
 
+
     MemberList() {
         this.mArr = new Member[0];
     }
