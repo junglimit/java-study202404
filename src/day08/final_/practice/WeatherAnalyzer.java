@@ -4,7 +4,7 @@ import static day08.final_.practice.WeatherConstants.*;
 
 public class WeatherAnalyzer {
     public static boolean checkTemperatureAlert(double temperature) {
-        if(temperature > MAX_TEMPERATURE_ALERT || temperature < MIN_TEMPERATURE_ALERT) {
+        if(temperature > MAX_TEMPERATURE_ALERT.getNumericData() || temperature < MIN_TEMPERATURE_ALERT.getNumericData()) {
             return true;
         }else {
             return false;
@@ -12,7 +12,7 @@ public class WeatherAnalyzer {
     }
 
     public static boolean checkPrecipitationAlert(double precipitation) {
-        if(precipitation > PRECIPITATION_ALERT) {
+        if(precipitation > PRECIPITATION_ALERT.getNumericData()) {
             return true;
         } else {
             return false;
