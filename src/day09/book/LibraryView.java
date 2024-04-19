@@ -150,11 +150,12 @@ public class LibraryView {
 
     // 전체 도서 정보를 출력
     private void displayAllBooks() {
-        System.out.println("\n================== 전체 도서 목록 ===================");
+        System.out.println("\n=============== 전체 도서 목록 ================");
         Book[] informationList = repository.getAllBooksInfo();
+
         for (int i = 0; i < informationList.length; i++) {
             Book book = informationList[i];
-            System.out.printf("%d. %s\n", book.info());
+            System.out.printf("%d. %s\n", i+1, book.info());
         }
     }
 }
