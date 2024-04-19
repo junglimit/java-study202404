@@ -35,4 +35,53 @@ public class LibraryRepository {
     public Book[] getAllBooksInfo() {
         return bookList.getbArr();
     }
+
+    // 검색어에 걸린 책들만 모아두는 리스트
+    public Book[] searchBookList(String keyword) {
+        BookList filteredList = new BookList();
+        for (Book book : bookList.getbArr()) {
+            if (book.getTitle().contains(keyword)) {
+                filteredList.push(book);
+            }
+        }
+        return filteredList.getbArr();
+    }
+
+    /**
+     * 주어진 책 번호에 맞는 책이 대여 가능한지에 대한 상태 상수를 리턴
+     * @param bookNum - 입력받은 책 번호
+     * @return - 대여 가능상태 반환 ( 3가지 상태기 때문에 불리언타입이 아닌 이늄으로 확인)
+     */
+    public RentStatus rentBook(int bookNum) {
+
+        // 1. 책 번호에 해당하는 책 정보 가져오기
+        Book wishBook = bookList.get(bookNum - 1);
+        System.out.println(wishBook.info());
+
+        // 2. 이 책을 대여할 수 있는지 검증
+        // 2-1. 요리책일 경우
+        if (wishBook instanceof CookBook) {
+            // 3. 쿠폰 유무를 확인
+            CookBook cookBook = (CookBook) wishBook;
+            if(cookBook.isCoupon()) {
+                // 회원의 쿠폰개수 업데이트
+                user.setCouponCount(user.getCouponCount() + 1);
+                return RentStatus.RENT_SUCCESS_WITH_COUPON;
+            }else {
+                return RentStatus.RENT_SUCCESS;
+            }
+        }
+        // 2-2. 만화책일 경우
+        else if (wishBook instanceof CartoonBook) {
+            // 3. 회원의 연령이 만화책의 제한 연령보다 높은지 확인
+            CartoonBook cartoonBook = (CartoonBook) wishBook;
+            if (user.getAge() >= cartoonBook.getAccessAge()) {
+                return RentStatus.RENT_SUCCESS;
+            } else {
+                return RentStatus.RENT_FAIL;
+            }
+        }
+        return RentStatus.RENT_FAIL;
+    }
 }
+
