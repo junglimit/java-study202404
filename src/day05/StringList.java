@@ -29,7 +29,7 @@ public class StringList {
     }
 
     // 배열에 맨 끝에 데이터를 추가하는 메서드
-    void push(String newData) {
+    public void push(String newData) {
         String[] temp = new String[sArr.length + 1];
         for (int i = 0; i < sArr.length; i++) {
             temp[i] = sArr[i];
