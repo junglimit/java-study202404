@@ -9,6 +9,7 @@ class MediaPlayer {
         for (int i = 0; i < mediaList.length; i++) {
             temp[i] = mediaList[i];
         }
+        // MediaPlayable[] temp = Arrays.copyOf(mediaList, mediaList.length + 1) - 임시배열 만들기 ,for 문 생략가능
         temp[temp.length - 1] = media;
         mediaList = temp;
     }
