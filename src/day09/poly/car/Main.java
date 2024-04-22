@@ -63,5 +63,11 @@ public class Main {
 
         System.out.println("==================");
         driver.drive(new Sonata());
+
+        sonata1.accelerate();
+
+        Tucson tucson = new Tucson();
+        tucson.accelerate();
+        tucson.brake();
     }
 }
