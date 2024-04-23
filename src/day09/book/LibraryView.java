@@ -16,9 +16,23 @@ public class LibraryView {
     }
 
     public void makeNewBookUser() {
+        int age = 0;
         System.out.println("\n# 회원 정보를 입력해주세요.");
-        String name = input("# 이름: ");
-        int age = Integer.parseInt(input("# 나이: "));
+        String name = null;
+        while (true) {
+            name = input("# 이름: ");
+
+            if(name.isEmpty()) {
+                System.out.println("이름을 입력해주세요");
+            }
+            try {
+                age = Integer.parseInt(input("# 나이: "));
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("나이는 정수로 입력해주세요");
+
+            }
+        }
         Gender gender = inputGender();
 
         // 입력된 데이터 저장
@@ -97,9 +111,14 @@ public class LibraryView {
 
     private void rentBook() {
         displayAllBooks();
-        String bookNum = input("- 대여할 도서 번호 입력: ");
-        //  대여 가능한지 여부 검증
-        RentStatus status = repository.rentBook(Integer.parseInt(bookNum));
+        RentStatus status = null;
+        try {
+            String bookNum = input("- 대여할 도서 번호 입력: ");
+            //  대여 가능한지 여부 검증
+            status = repository.rentBook(Integer.parseInt(bookNum));
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("올바른 도서 번호를 입력해주세요.");;
+        }
 
         if(status == RentStatus.RENT_SUCCESS_WITH_COUPON) {
             System.out.println("# 성공적으로 요리책이 쿠폰발급과 함께 대여되었습니다.");
