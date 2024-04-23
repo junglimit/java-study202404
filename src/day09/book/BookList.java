@@ -6,6 +6,7 @@ public class BookList {
     private static final int NOT_FOUND = -1;
 
     public BookList() {
+
         this.bArr = new Book[0];
     }
 
