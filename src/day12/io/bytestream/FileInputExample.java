@@ -18,12 +18,13 @@ public class FileInputExample {
 
             int data = 0;// 세이브파일 로드 명령
 
-            while (data != -1) {
-                data = fis.read();
-
+            while ((data = fis.read()) != -1) {
                 // 아스키코드를 문자로 출력
                 System.out.write(data);
+
             }
+            // 출력 버퍼 비우기
+            System.out.flush();
 
 
         } catch (FileNotFoundException e) {
