@@ -7,6 +7,7 @@ import static day12.lambda.FilterApple.*;
 
 public class Main {
 
+    // 내부클래스 생성
     private static class AppleColorPredicate implements ApplePredicate {
 
         @Override
@@ -46,7 +47,9 @@ public class Main {
 
         System.out.println("===========무거운 사과(100그램 이상) 필터링 ============");
 
-//        FilterApple.filterApples(appleBasket, new AppleWeightPredicate());
+        List<Apple> apples1
+                = filterApples(appleBasket, new AppleWeightPredicate());
+        System.out.println("apples1 = " + apples1);
 
         System.out.println("=========== 빨강 또는 녹색 사과 필터링 ============= ");
         List<Apple> apples2 = filterApples(appleBasket, new AppleColorPredicate());

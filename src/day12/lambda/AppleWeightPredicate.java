@@ -1,8 +1,6 @@
 package day12.lambda;
 
-import java.util.function.Predicate;
-
-public class  AppleWeightPredicate implements Predicate<Apple> {
+public class AppleWeightPredicate implements ApplePredicate {
     @Override
     public boolean test(Apple apple) {
         return apple.getWeight() >= 100;
