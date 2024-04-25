@@ -134,24 +134,56 @@ public class Main {
                 {Trader: Raoul in Cambridge, year: 2022, value: 1000}
                 {Trader: Alan in Cambridge, year: 2022, value: 950}
          */
-            System.out.println("==========================");
-            List<Transaction> collect4 = transactions.stream()
-                    .filter(t -> t.getYear() == 2021)
-                    .sorted(comparing(Transaction::getYear))
+//            System.out.println("==========================");
+//            List<Transaction> collect4 = transactions.stream()
+//                    .filter(t -> t.getYear() == 2021)
+//                    .sorted(comparing(Transaction::getYear))
+//                    .collect(toList());
+//
+//            List<Transaction> collect5 = transactions.stream()
+//                    .filter(t -> t.getYear() == 2022)
+//                    .sorted(comparing(Transaction::getYear))
+//
+//                    .collect(toList());
+//            Map<String, Object> map = new HashMap<>();
+//            map.put("\nyear: 2021\n", collect4);
+//
+//            map.put("\nyear: 2022\n", collect5);
+//            System.out.println(map);
+
+            /*
+            Map<Integer, List<Transaction>> groupByYearMap = new HashMap<>();
+
+            List<Transaction> trs2021 = transactions.stream()
+                    .filter(trs -> trs.getYear() == 2021)
                     .collect(toList());
 
-            List<Transaction> collect5 = transactions.stream()
-                    .filter(t -> t.getYear() == 2022)
-                    .sorted(comparing(Transaction::getYear))
-
+            List<Transaction> trs2022 = transactions.stream()
+                    .filter(trs -> trs.getYear() == 2022)
                     .collect(toList());
-            Map<String, Object> map = new HashMap<>();
-            map.put("\nyear: 2021\n", collect4);
 
-            map.put("\nyear: 2022\n", collect5);
-            System.out.println(map);
+            groupByYearMap.put(2021, trs2021);
+            groupByYearMap.put(2022, trs2022);
 
 
+            System.out.println("=====================");
+            for (Integer year : groupByYearMap.keySet()) {
+                System.out.println("year = " + year);
+                for (Transaction transaction : groupByYearMap.get(year)) {
+                    System.out.println(transaction);
+                }
+            }
+        */
+
+
+            Map<Integer, List<Transaction>> cambridgeTrsMap = transactions.stream()
+                    .filter(trs -> trs.getTrader().getCity().equalsIgnoreCase("Cambridge"))
+                    .collect(groupingBy(trs -> trs.getYear()));
+
+            cambridgeTrsMap.forEach((key,value) -> {
+                System.out.println("year = " + key);
+                value.forEach(System.out::println);
+            });
 
 
 
